@@ -21,9 +21,10 @@ if __name__ == '__main__':
     df_raw = prepare_data()
 
     # 1. Print the number of rows and columns in the DataFrame
-
+    print("\nShape\n", df_raw.shape)
     # 2. Print the first _n_ rows of data (e.g. 5)
-
+    print("\nHead - first 5 rows\n",df_raw.head(5))
     # 3. Print the column labels. Note any columns that you don't think are needed.
-
+    print("\nColumns\n",df_raw.columns)
     # 4. Print the column labels and data types.
+    print("\nColumns with data types\n", df_raw.dtypes)

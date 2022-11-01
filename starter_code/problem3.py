@@ -20,8 +20,9 @@ if __name__ == '__main__':
     # Code from problems 1:
     df_raw = prepare_data()
 
-    print(df_raw.columns)
+    
 
     # 1. Drop the list of named columns `['Events', 'Sports', 'Countries']
-
+    df_raw.drop(['Events', 'Sports', 'Countries'], axis=1, inplace=True)
     # 2. Print the column labels again, or check the shape which should be lower than the original column count
+    print(df_raw.columns)
