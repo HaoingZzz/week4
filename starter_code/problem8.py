@@ -65,3 +65,4 @@ if __name__ == '__main__':
     df_prepared = pd.read_csv(prepared_csv_filepath, parse_dates=['Start', 'End'], dtype={'Year': str})
 
     # Add code here to print the stats returned by describe
+    print(df_prepared)

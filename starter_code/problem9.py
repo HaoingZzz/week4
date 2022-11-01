@@ -10,3 +10,6 @@ if __name__ == '__main__':
     df_prepared = pd.read_csv(prepared_csv_filepath, parse_dates=['Start', 'End'], dtype={'Year': str})
 
     # Add code here to create the box plot
+    bp = df_prepared.plot.box()
+    plt.show()
+    df_prepared.plot.box().get_figure().savefig('bp_example.png')
