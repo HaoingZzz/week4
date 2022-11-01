@@ -30,6 +30,9 @@ if __name__ == '__main__':
     df_raw = prepare_data()
 
     # Find the unique values for the Type column
-
+    df_unique = df_raw['Type'].unique()
+    print(df_unique)
     # Remove the extra spaces from 'Summer   '. You can't use inplace=True as this is a Series action so you need to
     # replace the df["Type"] series with the result of the str.strip() function
+    df_raw['Type'] = df_raw['Type'].str.strip()
+    print(df_raw)
