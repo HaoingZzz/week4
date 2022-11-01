@@ -13,3 +13,5 @@ if __name__ == '__main__':
     df = df.rename(columns={"Participants (M)": "Male", "Participants (F)": "Female", "Participants": "Total"})
 
     # Add code here to create and show the line plot
+    df.plot.line()
+    plt.show()
