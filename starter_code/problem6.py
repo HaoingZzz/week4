@@ -33,11 +33,18 @@ if __name__ == '__main__':
     df_raw = prepare_data()
 
     # Create a data frame with the NOC regions
-
+    noc_csv = Path(__file__).parent.parent.joinpath('data', 'noc_regions.csv')
+    df_noc = pd.read_csv(noc_csv)
     # Drop the 'notes' column
-
+    df_noc = df_noc.drop(['notes'], axis=1)
     # Merge the columns where df['Country'] matches df_noc['region']
-
+    df_merged = df_raw.merge(df_noc, how='left', left_on='Country', right_on='region')
+    df_merged = df_merged.drop(['region'], axis=1)
+    
     # Manually add the 'NOC' code for Great Britain (GBR) and Republic of Korea (KOR)
     # This is a little more tricky as you need to replace a value in one column based on a condition in another
     # There will be more than one way to do this, I used a mask (condition).
+    df_merged['NOC'] = df_merged['NOC'].mask(df_merged['Country'] == 'Great Britain', 'GBR')
+    df_merged['NOC'] = df_merged['NOC'].mask(df_merged['Country'] == 'Republic of Korea', 'KOR')
+
+    print(df_merged)

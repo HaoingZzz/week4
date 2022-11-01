@@ -28,11 +28,11 @@ if __name__ == '__main__':
     # and print the result
     print("\nCount of missing values\n", df_raw.isnull().sum().sum())
     # 2. Create a dataframe with the rows that contain missing values and print it
-    df_miss = df_raw[df_raw.isnull().values==True]
+    df_miss = df_raw[df_raw.isna().any(axis=1)]
     print(df_miss)
     # 3. Drop rows where there is a na in the Participants M or F columns
     df_raw.dropna(axis=0, subset=['Participants (M)', 'Participants (F)'], inplace=True)
     # 4. Replace the NaN in Type column with 'Winter'
     df_raw.fillna({'Type': 'Winter'}, inplace=True)
 
-    #print(df_raw)
+    print(df_raw)
