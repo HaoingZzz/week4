@@ -58,19 +58,23 @@ if __name__ == '__main__':
     df_raw = prepare_data()
 
     # Check the data type of the columns
-
+    print(df_raw[['Year', 'Start', 'End']].dtypes)
     # Check the format of the strings in Start and End by printing a couple of rows
-
+    print(df_raw[['Year', 'Start', 'End']].head(4))
     # Add the year to the Start and End columns. Year is int and Start/End are strings so to combine as strings you
     # need to first convert the Year to string
-
+    df_raw["Start"] = df_raw["Start"] + '-' + df_raw["Year"].astype(str)
+    df_raw["End"] = df_raw["End"] + '-' + df_raw["Year"].astype(str)
+    # print(df_raw)
     # Change the Start/End columns datatype to datetime format
     # Pandas to_datetime handles most date formats so you can use it without the format= and it will work
-
+    df_raw['Start'] = pd.to_datetime(df_raw['Start'])
+    df_raw['End'] = pd.to_datetime(df_raw['End'])
     # Create a duration column that calculates days between the start and end
-
+    df_raw['Duration'] = df_raw['End'] - df_raw['Start']
     # The output of the above is in timedelta format, however we want to compare duration as int
     # Convert the format from datetime to int
-
+    df_raw['Duration'] = df_raw['Duration'].dt.days.astype('int')
+    #print(df_raw)
 
 
